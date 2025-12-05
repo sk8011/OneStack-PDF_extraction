@@ -4,12 +4,10 @@ Provides REST API endpoints for PDF upload, data retrieval, and analysis
 """
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse, HTMLResponse, FileResponse
-from fastapi.staticfiles import StaticFiles
+from fastapi.responses import HTMLResponse, FileResponse
 import os
 import shutil
-from typing import List, Dict, Any
-import json
+from typing import Dict, Any
 
 from pdf_extractor import pdf_to_json
 from database import DynamicDatabaseManager
@@ -523,17 +521,6 @@ async def home():
                 }
             }
             
-            function showMessage(text, type) {
-                const messageDiv = document.getElementById('message');
-                messageDiv.className = `message ${type}`;
-                messageDiv.textContent = text;
-                messageDiv.style.display = 'block';
-                
-                setTimeout(() => {
-                    messageDiv.style.display = 'none';
-                }, 5000);
-            }
-            
             async function exportToExcel() {
                 const tableName = document.getElementById('tableSelect').value;
                 if (!tableName) {
@@ -861,60 +848,6 @@ async def get_table_schema(table_name: str):
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error fetching schema: {str(e)}")
-
-
-@app.get("/analyze/{table_name}")
-async def analyze_table(table_name: str):
-    """
-    Analyze data in a table (basic statistics)
-    
-    Args:
-        table_name: Name of the table
-    
-    Returns:
-        JSON response with analysis results
-    """
-    try:
-        data = db_manager.get_all_data(table_name)
-        
-        if not data:
-            return {
-                "success": True,
-                "table_name": table_name,
-                "message": "No data to analyze"
-            }
-        
-        # Basic analysis
-        analysis = {
-            "total_records": len(data),
-            "columns": list(data[0].keys()) if data else [],
-            "column_count": len(data[0].keys()) if data else 0
-        }
-        
-        # Analyze numeric columns
-        numeric_stats = {}
-        for column in analysis["columns"]:
-            values = [row[column] for row in data if row[column] is not None]
-            numeric_values = [v for v in values if isinstance(v, (int, float))]
-            
-            if numeric_values:
-                numeric_stats[column] = {
-                    "min": min(numeric_values),
-                    "max": max(numeric_values),
-                    "avg": sum(numeric_values) / len(numeric_values),
-                    "count": len(numeric_values)
-                }
-        
-        analysis["numeric_stats"] = numeric_stats
-        
-        return {
-            "success": True,
-            "table_name": table_name,
-            "analysis": analysis
-        }
-    
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error analyzing data: {str(e)}")
 
 
 @app.get("/export/{table_name}")
