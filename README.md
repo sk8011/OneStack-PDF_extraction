@@ -125,6 +125,6 @@ This is an assessment project for Onestack internship.
 
 ---
 
-**Developer**: [Your Name]  
+**Developer**: Saurav Kumar 
 **Date**: December 5, 2025  
 **Assessment**: Onestack SDE Intern - Question 2
