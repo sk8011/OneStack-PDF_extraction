@@ -86,7 +86,6 @@ ver-2/
 | GET | `/tables` | List all tables |
 | GET | `/data/{table_name}` | Get table data |
 | GET | `/schema/{table_name}` | Get table structure |
-| GET | `/analyze/{table_name}` | Get statistics |
 | GET | `/export/{table_name}` | Download as Excel |
 | DELETE | `/table/{table_name}` | Delete table |
 | POST | `/table/{table_name}/row` | Add row |
