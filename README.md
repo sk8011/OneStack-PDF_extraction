@@ -2,6 +2,7 @@
 
 A Python system that extracts structured data from PDF files (invoices, balance sheets, financial reports) and stores them in a database with auto-generated schema.
 
+![alt text](image.png)
 
 ## Features
 
