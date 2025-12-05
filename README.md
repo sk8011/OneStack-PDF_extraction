@@ -79,19 +79,19 @@ ver-2/
 
 ## API Endpoints
 
-Method   Endpoint                         Description
-------   --------                         -----------
-GET      /                                Web interface
-POST     /upload?table_name=name          Upload PDF and extract data
-GET      /tables                          List all tables
-GET      /data/{table_name}               Get table data
-GET      /schema/{table_name}             Get table structure
-GET      /analyze/{table_name}            Get statistics
-GET      /export/{table_name}             Download as Excel
-DELETE   /table/{table_name}              Delete table
-POST     /table/{table_name}/row          Add row
-PUT      /table/{table_name}/row/{id}     Update row
-DELETE   /table/{table_name}/row/{id}     Delete row
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/` | Web interface |
+| POST | `/upload?table_name=name` | Upload PDF and extract data |
+| GET | `/tables` | List all tables |
+| GET | `/data/{table_name}` | Get table data |
+| GET | `/schema/{table_name}` | Get table structure |
+| GET | `/analyze/{table_name}` | Get statistics |
+| GET | `/export/{table_name}` | Download as Excel |
+| DELETE | `/table/{table_name}` | Delete table |
+| POST | `/table/{table_name}/row` | Add row |
+| PUT | `/table/{table_name}/row/{id}` | Update row |
+| DELETE | `/table/{table_name}/row/{id}` | Delete row |
 
 
 ## How It Works
@@ -125,6 +125,6 @@ This is an assessment project for Onestack internship.
 
 ---
 
-**Developer**: [Your Name]  
+**Developer**: Saurav Kumar 
 **Date**: December 5, 2025  
 **Assessment**: Onestack SDE Intern - Question 2
